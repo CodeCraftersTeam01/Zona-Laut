@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Kapal - Dashboard Zona Laut</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- SIDEBAR -->
+        <aside id="sidebar"></aside>
+
+        <!-- KONTEN UTAMA -->
+        <div id="page-content-wrapper">
+            <!-- NAVBAR -->
+            <nav class="navbar navbar-light bg-white shadow-sm p-3 sticky-top">
+                <div class="container-fluid">
+                    <button class="btn btn-outline-primary d-md-none" id="menu-toggle">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <h5 class="mb-0 fw-semibold text-primary">
+                        <i class="fas fa-ship"></i> Data Kapal
+                    </h5>
+                </div>
+            </nav>
+
+            <!-- ISI HALAMAN -->
+            <div class="container mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0"><i class="fas fa-ship"></i> Data Kapal</h5>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal">
+                                <i class="bi bi-plus-circle"></i> Tambah Kapal
+                            </button>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Cari nama kapal...">
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered align-middle text-center" id="kapalTable">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Kapal</th>
+                                        <th>Jenis Kapal</th>
+                                        <th>Nama Pemilik</th>
+                                        <th>DPI</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="kapalBody"></tbody>
+                            </table>
+                        </div>
+
+                        <nav>
+                            <ul class="pagination justify-content-center" id="pagination"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="text-center mt-4 mb-3 text-muted">
+                &copy; 2025 Zona Laut | Dashboard DPI
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="addModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Tambah Kapal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kapal</label>
+                            <input type="text" class="form-control" id="addNama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Kapal</label>
+                            <select class="form-control" id="addJenis" required>
+                                <option value="">Pilih Jenis Kapal</option>
+                                <option value="Kapal Penangkap Ikan">Kapal Penangkap Ikan</option>
+                                <option value="Kapal Angkut">Kapal Angkut</option>
+                                <option value="Kapal Tanker">Kapal Tanker</option>
+                                <option value="Kapal Penumpang">Kapal Penumpang</option>
+                                <option value="Kapal Nelayan">Kapal Nelayan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pemilik Kapal</label>
+                            <select class="form-control" id="addPemilik" required>
+                                <option value="">Pilih Pemilik</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DPI</label>
+                            <select class="form-control" id="addDPI" required>
+                                <option value="">Pilih DPI</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Terverifikasi? </label>
+                            <select class="form-control" id="addVerification" required>
+                                <option value="0">Tidak Terverifikasi</option>
+                                <option value="1">Terverifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status? </label>
+                            <select class="form-control" id="addStatus" required>
+                                <option value="0">Nonaktif</option>
+                                <option value="1">Aktif</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Edit Kapal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editID">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Kapal</label>
+                            <input type="text" class="form-control" id="editNama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Kapal</label>
+                            <select class="form-control" id="editJenis" required>
+                                <option value="">Pilih Jenis Kapal</option>
+                                <option value="Kapal Penangkap Ikan">Kapal Penangkap Ikan</option>
+                                <option value="Kapal Angkut">Kapal Angkut</option>
+                                <option value="Kapal Tanker">Kapal Tanker</option>
+                                <option value="Kapal Penumpang">Kapal Penumpang</option>
+                                <option value="Kapal Nelayan">Kapal Nelayan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pemilik Kapal</label>
+                            <select class="form-control" id="editPemilik" required>
+                                <option value="">Pilih Pemilik</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DPI</label>
+                            <select class="form-control" id="editDPI" required>
+                                <option value="">Pilih DPI</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Terverifikasi?</label>
+                            <select class="form-control" id="editVerification" required>
+                                 <option value="0">Tidak Terverifikasi</option>
+                                <option value="1">Terverifikasi</option>
+                            </select>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Status? </label>
+                            <select class="form-control" id="editStatus" required>
+                                <option value="0">Nonaktif</option>
+                                <option value="1">Aktif</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Simpan Perubahan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/layouting.js"></script>
+    <script src="js/script.js"></script>
+
+    <script src="js/kapal.js"></script>
+</body>
+</html>
