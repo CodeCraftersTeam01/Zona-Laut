@@ -1,0 +1,93 @@
+/* Simple vessel styles */
+        .vessel-simple {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #3b82f6;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .vessel-simple i {
+            font-size: 12px;
+        }
+
+        .vessel-longliner .vessel-simple {
+            border-color: #10b981;
+        }
+
+        .vessel-purse-seine .vessel-simple {
+            border-color: #8b5cf6;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        #monitoringMap {
+            min-height: 300px;
+        }
+
+        /* Notification styles */
+        .notification-toast {
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .touch-device .vessel-simple {
+                width: 32px;
+                height: 32px;
+            }
+
+            .touch-device .vessel-simple i {
+                font-size: 14px;
+            }
+
+            /* Improve touch targets */
+            .touch-device button {
+                min-height: 44px;
+            }
+
+            .touch-device .flex.items-center {
+                padding: 12px 8px;
+            }
+        }
+
+        /* Prevent horizontal scroll on mobile */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Better scrolling on mobile */
+        @media (max-width: 768px) {
+            #vesselsList {
+                max-height: 300px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Leaflet popup mobile optimization */
+        @media (max-width: 640px) {
+            .leaflet-popup-content {
+                margin: 12px 8px;
+            }
+
+            .leaflet-popup-content-wrapper {
+                border-radius: 12px;
+            }
+        }

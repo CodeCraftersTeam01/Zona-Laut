@@ -1,0 +1,94 @@
+  /* Simple vessel styles */
+        .vessel-simple {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #3b82f6;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .vessel-simple i {
+            font-size: 14px;
+        }
+
+        .vessel-longliner .vessel-simple {
+            border-color: #10b981;
+        }
+
+        .vessel-purse-seine .vessel-simple {
+            border-color: #8b5cf6;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* Map container */
+        #fullscreenMap {
+            min-height: 100vh;
+        }
+
+        /* Notification styles */
+        .notification-toast {
+            transition: all 0.3s ease;
+        }
+
+        /* Custom geocoder styles */
+        .leaflet-control-geocoder {
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaflet-control-geocoder-form input {
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Control panel transition */
+        #controlPanel {
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        /* Ensure map controls are above map */
+        .leaflet-control-container {
+            z-index: 40 !important;
+        }
+
+        /* Ensure our UI elements are above map controls */
+        .fixed {
+            z-index: 50;
+        }
