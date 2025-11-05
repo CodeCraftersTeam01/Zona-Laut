@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Tangkapan Ikan - Dashboard Zona Laut</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- SIDEBAR -->
+    <aside id="sidebar"></aside>
+
+    <!-- KONTEN UTAMA -->
+    <div id="page-content-wrapper">
+      <!-- NAVBAR -->
+      <nav class="navbar navbar-light bg-white shadow-sm p-3 sticky-top">
+        <div class="container-fluid">
+          <button class="btn btn-outline-primary d-md-none" id="menu-toggle">
+            <i class="bi bi-list"></i>
+          </button>
+          <h5 class="mb-0 fw-semibold text-primary">
+            <i class="bi bi-fish"></i> Data Tangkapan Ikan
+          </h5>
+        </div>
+      </nav>
+
+      <!-- ISI HALAMAN -->
+      <div class="container mt-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0"><i class="bi bi-fish"></i> Data Tangkapan Ikan</h5>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="bi bi-plus-circle"></i> Tambah Tangkapan
+              </button>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Cari nama ikan...">
+              </div>
+              <div class="col-md-3">
+                <input type="date" id="filterTanggal" class="form-control">
+              </div>
+              <div class="col-md-3">
+                <select id="filterKapal" class="form-control">
+                  <option value="">Semua Kapal</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <select id="filterPemilik" class="form-control">
+                  <option value="">Semua Pemilik</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered align-middle text-center" id="tangkapanTable">
+                <thead class="table-primary">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Ikan</th>
+                    <th>Kapal</th>
+                    <th>Pemilik</th>
+                    <th>Berat (kg)</th>
+                    <th>Harga/Kg</th>
+                    <th>Total</th>
+                    <th>DPI</th>
+                    <th>Tanggal & Waktu</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tangkapanBody"></tbody>
+              </table>
+            </div>
+
+            <nav>
+              <ul class="pagination justify-content-center" id="pagination"></ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <footer class="text-center mt-3 p-3 text-muted">
+        &copy; 2025 Zona Laut | Dashboard DPI
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal Tambah -->
+  <div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Tambah Data Tangkapan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Pemilik <span class="text-danger">*</span></label>
+                  <select class="form-control" id="addIdPemilik" required>
+                    <option value="">Pilih Pemilik</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Kapal <span class="text-danger">*</span></label>
+                  <select class="form-control" id="addIdKapal" required disabled>
+                    <option value="">Pilih Pemilik terlebih dahulu</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Nama Ikan <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="addNamaIkan" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">DPI <span class="text-danger">*</span></label>
+                  <select class="form-control" id="addIdDpi" required>
+                    <option value="">Pilih DPI</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label class="form-label">Berat Ikan (kg) <span class="text-danger">*</span></label>
+                  <input type="number" step="0.01" class="form-control" id="addBeratIkan" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label class="form-label">Harga per Kg <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="addHargaPerKilo" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label class="form-label">Total</label>
+                  <input type="text" class="form-control" id="addTotal" readonly>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Tanggal Tangkapan <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" id="addTanggalTangkapan" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Waktu Tangkapan <span class="text-danger">*</span></label>
+                  <input type="time" class="form-control" id="addWaktuTangkapan" required>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Simpan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit -->
+  <div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Edit Data Tangkapan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editForm">
+            <input type="hidden" id="editID">
+            <input type="hidden" id="editIdPemilik">
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Pemilik</label>
+                  <input type="text" class="form-control" id="editNamaPemilik" readonly>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Kapal <span class="text-danger">*</span></label>
+                  <select class="form-control" id="editIdKapal" required>
+                    <option value="">Pilih Kapal</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Nama Ikan <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="editNamaIkan" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">DPI <span class="text-danger">*</span></label>
+                  <select class="form-control" id="editIdDpi" required>
+                    <option value="">Pilih DPI</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label class="form-label">Berat Ikan (kg) <span class="text-danger">*</span></label>
+                  <input type="number" step="0.01" class="form-control" id="editBeratIkan" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label class="form-label">Harga per Kg <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="editHargaPerKilo" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label class="form-label">Total</label>
+                  <input type="text" class="form-control" id="editTotal" readonly>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Tanggal Tangkapan <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" id="editTanggalTangkapan" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Waktu Tangkapan <span class="text-danger">*</span></label>
+                  <input type="time" class="form-control" id="editWaktuTangkapan" required>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Simpan Perubahan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/layouting.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/tangkapan.js"></script>
+</body>
+
+</html>

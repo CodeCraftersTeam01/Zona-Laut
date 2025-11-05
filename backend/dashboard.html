@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Zona Laut</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- SIDEBAR -->
+    <aside id="sidebar"></aside>
+
+    <!-- KONTEN UTAMA -->
+    <div id="page-content-wrapper">
+      <!-- NAVBAR -->
+      <nav class="navbar navbar-light bg-white shadow-sm p-3 sticky-top">
+        <div class="container-fluid">
+          <button class="btn btn-outline-primary d-md-none" id="menu-toggle">
+            <i class="bi bi-list"></i>
+          </button>
+          <h5 class="mb-0 fw-semibold text-primary">
+            <i class="bi bi-speedometer2"></i> Dashboard Zona Laut
+          </h5>
+          <div class="text-muted small">
+            <i class="bi bi-calendar3"></i> 
+            <span id="current-date"></span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ISI HALAMAN -->
+      <div class="container-fluid mt-4">
+        <div class="row g-4">
+          <!-- CARD DPI -->
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+              <div class="card-body text-center">
+                <i class="bi bi-geo-alt-fill text-primary fs-1 mb-2"></i>
+                <h6 class="fw-semibold text-secondary">Total DPI</h6>
+                <h3 class="fw-bold text-dark" id="dpi-counter">0</h3>
+                <a href="dpi.html" class="btn btn-outline-primary btn-sm mt-2">Lihat Detail</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD KAPAL -->
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-ship text-info fs-1 mb-2"></i>
+                <h6 class="fw-semibold text-secondary">Total Kapal</h6>
+                <h3 class="fw-bold text-dark" id="kapal-counters">0</h3>
+                <a href="kapal.html" class="btn btn-outline-info btn-sm mt-2">Lihat Detail</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD PEMILIK -->
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+              <div class="card-body text-center">
+                <i class="bi bi-person-lines-fill text-success fs-1 mb-2"></i>
+                <h6 class="fw-semibold text-secondary">Total Pemilik</h6>
+                <h3 class="fw-bold text-dark" id="pemilik-counter">0</h3>
+                <a href="pemilik.html" class="btn btn-outline-success btn-sm mt-2">Lihat Detail</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD TANGKAPAN HARI INI -->
+          <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-fish text-warning fs-1 mb-2"></i>
+                <h6 class="fw-semibold text-secondary">Tangkapan Hari Ini</h6>
+                <h3 class="fw-bold text-dark" id="tangkapan-hari-ini">0</h3>
+                <small class="text-muted" id="berat-hari-ini">0 kg</small>
+                <a href="tangkapan.html" class="btn btn-outline-warning btn-sm mt-2 d-block">Lihat Detail</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: STATISTIK DAN AKTIVITAS -->
+        <div class="row mt-4 g-4">
+          <!-- STATISTIK -->
+          <div class="col-lg-8">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+              <div class="card-body">
+                <h6 class="fw-semibold mb-3 text-primary">
+                  <i class="bi bi-bar-chart-line"></i> Statistik Zona Laut
+                </h6>
+                <div class="row text-center">
+                  <div class="col-md-4 mb-3">
+                    <div class="border rounded p-3">
+                      <i class="bi bi-people-fill text-secondary fs-4"></i>
+                      <h6 class="mt-2">Total Users</h6>
+                      <h4 class="fw-bold" id="users-counter">0</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="border rounded p-3">
+                      <i class="bi bi-clock-history text-info fs-4"></i>
+                      <h6 class="mt-2">Aktivitas Hari Ini</h6>
+                      <h4 class="fw-bold" id="total-aktivitas">0</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="border rounded p-3">
+                      <i class="bi bi-calendar-check text-success fs-4"></i>
+                      <h6 class="mt-2">Login Hari Ini</h6>
+                      <h4 class="fw-bold" id="login-hari-ini">0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RECENT ACTIVITIES -->
+          <div class="col-lg-4">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+              <div class="card-body">
+                <h6 class="fw-semibold mb-3 text-primary">
+                  <i class="bi bi-activity"></i> Aktivitas Terbaru
+                </h6>
+                <div id="recent-activities" style="max-height: 400px; overflow-y: auto;">
+                  <div class="text-center text-muted py-4">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Memuat aktivitas...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="mt-5 p-3 text-center text-muted">
+        &copy; 2025 Zona Laut | Dashboard DPI
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Set current date
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString('id-ID', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    const wrapper = document.getElementById("wrapper");
+    const toggleButton = document.getElementById("menu-toggle");
+    toggleButton?.addEventListener("click", () => {
+      wrapper.classList.toggle("toggled");
+    });
+  </script>
+  
+  <script src="js/dashboard.js"></script>
+  <script src="js/layouting.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

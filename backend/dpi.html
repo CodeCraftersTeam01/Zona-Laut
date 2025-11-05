@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data DPI - Dashboard Zona Laut</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- SIDEBAR -->
+    <aside id="sidebar"></aside>
+
+    <!-- KONTEN UTAMA -->
+    <div id="page-content-wrapper">
+      <!-- NAVBAR -->
+      <nav class="navbar navbar-light bg-white shadow-sm p-3 sticky-top">
+        <div class="container-fluid">
+          <button class="btn btn-outline-primary d-md-none" id="menu-toggle">
+            <i class="bi bi-list"></i>
+          </button>
+          <h5 class="mb-0 fw-semibold text-primary">
+            <i class="bi bi-geo-alt"></i> Data Daerah Penangkapan Ikan (DPI)
+          </h5>
+        </div>
+      </nav>
+
+      <!-- ISI HALAMAN -->
+      <div class="container mt-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0"><i class="bi bi-map"></i> Daftar DPI</h5>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="bi bi-plus-circle"></i> Tambah DPI
+              </button>
+            </div>
+
+            <div class="mb-3">
+              <input type="text" id="searchInput" class="form-control" placeholder="Cari nama DPI...">
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered align-middle text-center">
+                <thead class="table-primary">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama DPI</th>
+                    <th>Luas (km²)</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="dpiBody"></tbody>
+              </table>
+            </div>
+
+            <nav>
+              <ul class="pagination justify-content-center" id="pagination"></ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="text-center mt-4 mb-3 text-muted">
+        &copy; 2025 Zona Laut | Dashboard DPI
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal Tambah -->
+  <div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Tambah Daerah Penangkapan Ikan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addForm">
+            <div class="mb-3">
+              <label class="form-label">Nama DPI</label>
+              <input type="text" class="form-control" id="addNama" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Luas (km²)</label>
+              <input type="number" class="form-control" id="addLuas" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Pilih Lokasi DPI</label>
+              <div id="map" style="height: 300px; border-radius: 10px;"></div>
+              <input type="hidden" id="addLocation" name="location">
+              <small class="text-muted d-block mt-1">Klik di peta untuk memilih koordinat lokasi.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Simpan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit -->
+  <div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Edit DPI</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editForm">
+            <div class="mb-3">
+              <label class="form-label">Nama DPI</label>
+              <input type="hidden" class="form-control" id="editId" required>
+              <input type="text" class="form-control" id="editNama" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Luas (km²)</label>
+              <input type="number" class="form-control" id="editLuas" required>
+            </div>
+
+            <!-- 🗺️ Tambahkan lokasi peta -->
+            <div class="mb-3">
+              <label class="form-label">Ubah Lokasi DPI</label>
+              <div id="editMap" style="height: 300px; border-radius: 10px;"></div>
+              <input type="hidden" id="editLocation" name="editLocation">
+              <small class="text-muted d-block mt-1">Klik di peta untuk ubah koordinat lokasi.</small>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Simpan Perubahan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Script -->
+  <script src="js/layouting.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/dpi.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Sidebar toggle
+    const wrapper = document.getElementById("wrapper");
+    const toggleButton = document.getElementById("menu-toggle");
+    toggleButton?.addEventListener("click", () => wrapper.classList.toggle("toggled"));
+
+
+  </script>
+</body>
+
+</html>
