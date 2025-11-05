@@ -32,13 +32,9 @@
                     <input type="text" class="search-input w-full py-3 px-4 pl-12 border border-border rounded-xl bg-bg-white text-sm transition-all duration-300 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/10" placeholder="Cari kapal">
                 </div>
                 <div class="action-buttons flex items-center gap-2">
-                    <button class="notification-btn w-10 h-10 border-none bg-bg-white rounded-lg flex items-center justify-center text-text-dark cursor-pointer transition-all duration-300 hover:bg-bg-light relative">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge absolute -top-1 -right-1 bg-danger text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">3</span>
-                    </button>
-                    <button class="user-menu-btn w-10 h-10 border-none bg-bg-white rounded-lg flex items-center justify-center text-text-dark cursor-pointer transition-all duration-300 hover:bg-bg-light" id="headerUserMenu">
+                    <a href="frontend/profile/" class="user-menu-btn w-10 h-10 border-none bg-bg-white rounded-lg flex items-center justify-center text-text-dark cursor-pointer transition-all duration-300 hover:bg-bg-light" id="headerUserMenu">
                         <i class="fas fa-user"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </header>
