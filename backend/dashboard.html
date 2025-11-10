@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Zona Laut</title>
   <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -83,7 +92,72 @@
           </div>
         </div>
 
-        <!-- ROW 2: STATISTIK DAN AKTIVITAS -->
+        <!-- ROW 2: MONITORING MAP -->
+        <div class="row mt-4 g-4">
+          <div class="col-12">
+            <div class="card shadow-sm border-0 rounded-4">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="fw-semibold mb-0 text-primary">
+                    <i class="bi bi-map"></i> Monitoring Peta Zona Laut
+                  </h6>
+                  <div class="btn-group">
+                    <button onclick="toggleVesselMovement()" class="btn btn-outline-primary btn-sm">
+                      <i class="fas fa-play" id="movementIcon"></i>
+                      <span id="movementText">Play</span>
+                    </button>
+                    <button onclick="toggleLayers()" class="btn btn-outline-success btn-sm">
+                      <i class="bi bi-layer-forward"></i>
+                      Layer
+                    </button>
+                    <button onclick="refreshMap()" class="btn btn-outline-info btn-sm">
+                      <i class="bi bi-arrow-clockwise"></i>
+                      Refresh
+                    </button>
+                    <button onclick="fullScreen()" class="btn btn-outline-warning btn-sm">
+                      <i class="bi bi-arrows-fullscreen"></i>
+                      Fullscreen
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- MAP CONTAINER -->
+                <div id="monitoringMap" class="w-100 rounded-3" style="height: 500px; position: relative;">
+                  
+
+                <!-- MAP STATS -->
+                <div class="row mt-3 text-center">
+                  <div class="col-md-3">
+                    <div class="border rounded p-2">
+                      <small class="text-muted">Kapal Aktif</small>
+                      <h6 class="fw-bold text-primary mb-0" id="activeShips">0</h6>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="border rounded p-2">
+                      <small class="text-muted">Zona DPI</small>
+                      <h6 class="fw-bold text-success mb-0" id="zoneCount">0</h6>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="border rounded p-2">
+                      <small class="text-muted">Total Kapal</small>
+                      <h6 class="fw-bold text-info mb-0" id="vesselCount">0</h6>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="border rounded p-2">
+                      <small class="text-muted">Status</small>
+                      <h6 class="fw-bold text-success mb-0">Online</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 3: STATISTIK DAN AKTIVITAS -->
         <div class="row mt-4 g-4">
           <!-- STATISTIK -->
           <div class="col-lg-8">
@@ -115,6 +189,22 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- DAFTAR KAPAL AKTIF -->
+                <div class="mt-4">
+                  <h6 class="fw-semibold mb-3 text-primary">
+                    <i class="fas fa-ship"></i> Kapal Aktif Saat Ini
+                    <span class="badge bg-primary ms-2" id="vesselsCount">0</span>
+                  </h6>
+                  <div id="vesselsList" style="max-height: 200px; overflow-y: auto;">
+                    <div class="text-center text-muted py-3">
+                      <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <p class="mt-2 mb-0">Memuat data kapal aktif...</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -132,6 +222,45 @@
                       <span class="visually-hidden">Loading...</span>
                     </div>
                     <p class="mt-2">Memuat aktivitas...</p>
+                  </div>
+                </div>
+
+                <!-- LEGENDA MAP -->
+                <div class="mt-4 pt-3 border-top">
+                  <h6 class="fw-semibold mb-2 text-secondary">
+                    <i class="bi bi-info-circle"></i> Legenda Peta
+                  </h6>
+                  <div class="row g-2">
+                    <div class="col-6">
+                      <div class="d-flex align-items-center mb-2">
+                        <div class="vessel-simple me-2" style="border-color: #3b82f6;">
+                          <i class="fas fa-ship" style="color: #3b82f6; font-size: 10px;"></i>
+                        </div>
+                        <small class="text-muted">Trawler</small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex align-items-center mb-2">
+                        <div class="vessel-simple me-2" style="border-color: #10b981;">
+                          <i class="fas fa-ship" style="color: #10b981; font-size: 10px;"></i>
+                        </div>
+                        <small class="text-muted">Long Liner</small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex align-items-center mb-2">
+                        <div class="vessel-simple me-2" style="border-color: #8b5cf6;">
+                          <i class="fas fa-ship" style="color: #8b5cf6; font-size: 10px;"></i>
+                        </div>
+                        <small class="text-muted">Purse Seine</small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex align-items-center mb-2">
+                        <div class="rounded-circle me-2" style="width: 12px; height: 12px; border: 2px solid #3b82f6; background: rgba(59, 130, 246, 0.1);"></div>
+                        <small class="text-muted">Zona DPI</small>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -156,12 +285,21 @@
       day: 'numeric'
     });
 
-    const wrapper = document.getElementById("wrapper");
-    const toggleButton = document.getElementById("menu-toggle");
-    toggleButton?.addEventListener("click", () => {
-      wrapper.classList.toggle("toggled");
+    // Handle window resize for map
+    window.addEventListener('resize', function() {
+      if (window.map) {
+        setTimeout(() => {
+          window.map.invalidateSize();
+        }, 300);
+      }
     });
   </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   
   <script src="js/dashboard.js"></script>
   <script src="js/layouting.js"></script>
