@@ -7,6 +7,7 @@
     <title>Profil Saya - Zona Laut</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Mengganti CDN Tailwind dengan file CSS lokal -->
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../src/output.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>

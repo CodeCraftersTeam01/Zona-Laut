@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 </head>
 
 <body class="bg-gradient-to-br from-white via-blue-50 to-blue-100 min-h-screen font-sans">

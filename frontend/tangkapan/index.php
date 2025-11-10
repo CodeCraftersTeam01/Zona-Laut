@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <!-- Mengganti CDN Tailwind dengan file CSS lokal -->
     <link rel="stylesheet" href="../src/output.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/tangkapan.css">
 </head>
