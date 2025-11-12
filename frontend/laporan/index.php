@@ -9,7 +9,6 @@
     <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <!-- Mengganti CDN Tailwind dengan file CSS lokal -->
-    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../src/output.css">
     <link rel="stylesheet" href="../css/dashboard.css">
    <link rel="stylesheet" href="../css/laporan.css">
@@ -121,7 +120,7 @@
                             <p class="text-gray-500 text-sm mt-1" id="reportGenerated">Dibuat pada: -</p>
                         </div>
                         <div class="mt-2 md:mt-0">
-                            <img src="../images/logo.png" alt="Logo" class="h-12 mix-blend-multiply">
+                            <img src="../images/logo.png" alt="Logo" class="h-12">
                         </div>
                     </div>
                 </div>

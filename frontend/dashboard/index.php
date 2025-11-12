@@ -7,7 +7,6 @@
     <title>Dashboard - Zona Laut</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <!-- Mengganti CDN Tailwind dengan file CSS lokal -->
     <link rel="stylesheet" href="../src/output.css">
@@ -33,9 +32,13 @@
                     <input type="text" class="search-input w-full py-3 px-4 pl-12 border border-border rounded-xl bg-bg-white text-sm transition-all duration-300 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/10" placeholder="Cari kapal">
                 </div>
                 <div class="action-buttons flex items-center gap-2">
-                    <a href="frontend/profile/" class="user-menu-btn w-10 h-10 border-none bg-bg-white rounded-lg flex items-center justify-center text-text-dark cursor-pointer transition-all duration-300 hover:bg-bg-light" id="headerUserMenu">
+                    <button class="notification-btn w-10 h-10 border-none bg-bg-white rounded-lg flex items-center justify-center text-text-dark cursor-pointer transition-all duration-300 hover:bg-bg-light relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge absolute -top-1 -right-1 bg-danger text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">3</span>
+                    </button>
+                    <button class="user-menu-btn w-10 h-10 border-none bg-bg-white rounded-lg flex items-center justify-center text-text-dark cursor-pointer transition-all duration-300 hover:bg-bg-light" id="headerUserMenu">
                         <i class="fas fa-user"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </header>

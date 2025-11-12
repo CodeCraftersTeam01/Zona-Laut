@@ -11,9 +11,9 @@
             </div>
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-8">
-                    <a href="#" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Beranda</a>
-                    <a href="#" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Fitur</a>
-                    <a href="#" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Tentang</a>
+                    <a href="./frontend/#" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Beranda</a>
+                    <a href="./frontend/#fitur" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Fitur</a>
+                    <a href="./frontend/tentang" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Tentang</a>
                     <a href="#" class="text-blue-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Kontak</a>
                 </div>
             </div>
