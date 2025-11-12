@@ -515,10 +515,17 @@
 
         // Form submission dengan fetch
         // Form submission dengan fetch
+// Form submission dengan fetch - PERBAIKAN
+
+function testing(){
+    document.getElementById('registrationForm').dispatchEvent(new Event('submit'));
+}
 document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    console.log("Form submitted"); // Debug log
     
     if (!checkNetworkStatus()) {
+        console.log("Network check failed");
         return;
     }
     
@@ -531,11 +538,16 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         address: document.getElementById('address').value.trim()
     };
 
+    console.log("Form data:", formData); // Debug log
+
     // Final validation
     if (!validateForm(formData)) {
+        console.log("Form validation failed");
         toastSystem.error('Validasi Gagal', 'Harap perbaiki semua field yang masih error sebelum melanjutkan.');
         return;
     }
+
+    console.log("Form validation passed"); // Debug log
 
     // Show loading state
     const submitButton = document.getElementById('submitButton');
@@ -547,6 +559,8 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     submitText.textContent = 'Mendaftarkan...';
 
     try {
+        console.log("Sending request to server..."); // Debug log
+        
         const response = await fetch('../auth.php?action=register', {
             method: 'POST',
             headers: {
@@ -555,9 +569,14 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
             body: JSON.stringify(formData)
         });
 
+        console.log("Response received:", response); // Debug log
+
         const result = await response.json();
+        console.log("Result:", result); // Debug log
 
         if (result.success) {
+            console.log("Registration successful"); // Debug log
+            
             // Simpan user data ke localStorage untuk verifikasi
             if (result.user) {
                 localStorage.setItem('currentUser', JSON.stringify(result.user));
@@ -570,7 +589,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
                 successModal.show(
                     'Registrasi Berhasil!',
                     result.message || 'Akun Anda telah berhasil dibuat. Mengarahkan ke verifikasi WhatsApp...',
-                    result.redirect_url || '../verify', // Redirect ke halaman verifikasi
+                    result.redirect_url || '../verify',
                     3000
                 );
             } else {
@@ -591,6 +610,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
             resetFormValidation();
             
         } else {
+            console.log("Registration failed:", result.message); // Debug log
             toastSystem.error('Registrasi Gagal', result.message || 'Terjadi kesalahan saat mendaftar.');
         }
     } catch (error) {
