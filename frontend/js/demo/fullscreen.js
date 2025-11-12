@@ -82,7 +82,7 @@
 
                 if (data.success) {
                     dpiData = data.data;
-                    console.log('DPI Data loaded:', dpiData);
+                    // console.log('DPI Data loaded:', dpiData);
                     return true;
                 } else {
                     throw new Error(data.message || 'Failed to fetch DPI data');
@@ -110,7 +110,7 @@
                     } else {
                         kapalData = [];
                     }
-                    console.log('Kapal Data loaded (aktif saja):', kapalData);
+                    // console.log('Kapal Data loaded (aktif saja):', kapalData);
                     return true;
                 } else {
                     throw new Error(data.message || 'Failed to fetch kapal data');
@@ -317,7 +317,7 @@
             }
 
             // Log jumlah kapal aktif
-            console.log(`Kapal aktif yang ditampilkan di peta: ${activeKapalData.length} dari total ${kapalData.length} kapal`);
+            // console.log(`Kapal aktif yang ditampilkan di peta: ${activeKapalData.length} dari total ${kapalData.length} kapal`);
         }
 
         // Move vessel within its DPI zone
@@ -667,7 +667,7 @@
         }
 
         function initDemoData() {
-            console.log('Using demo data as fallback');
+            // console.log('Using demo data as fallback');
             dpiData = [{
                 "id": 14,
                 "nama_dpi": "laut selatan",

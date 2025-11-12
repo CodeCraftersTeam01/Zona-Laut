@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 </head>
 
 <body class="bg-gradient-to-br from-white via-blue-50 to-blue-100 min-h-screen font-sans">
@@ -71,7 +70,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <p class="text-blue-600 text-sm font-medium">Total Kapal</p>
-                                    <p class="text-blue-900 text-2xl font-bold">248</p>
+                                    <p class="text-blue-900 text-2xl font-bold" id="totalKapal">0</p>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +81,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <p class="text-cyan-600 text-sm font-medium">Tangkapan Hari Ini</p>
-                                    <p class="text-cyan-900 text-2xl font-bold">5.2 ton</p>
+                                    <p class="text-cyan-900 text-2xl font-bold" id="totalTangkapan">0 ton</p>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +92,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <p class="text-indigo-600 text-sm font-medium">Zona Aktif</p>
-                                    <p class="text-indigo-900 text-2xl font-bold">18</p>
+                                    <p class="text-indigo-900 text-2xl font-bold" id="totalDPI">0</p>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +112,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 px-4 bg-gradient-to-b from-white to-blue-50">
+    <section id="fitur" class="py-20 px-4 bg-gradient-to-b from-white to-blue-50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Fitur Unggulan Platform</h2>
@@ -208,7 +207,7 @@
                     Bergabunglah dengan puluhan perusahaan perikanan yang telah menggunakan Zona Laut untuk meningkatkan produktivitas dan keberlanjutan.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="login.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition duration-300 shadow-lg hover:shadow-xl">
+                    <a href="./frontend/auth/login" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition duration-300 shadow-lg hover:shadow-xl">
                         Masuk Ke Dashboard
                     </a>
                     <a href="#" class="bg-white text-blue-700 border-2 border-blue-200 hover:border-blue-300 px-8 py-4 rounded-xl font-semibold text-lg transition duration-300 shadow-md hover:shadow-lg">
@@ -251,6 +250,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/dashboard/script.js"></script>
     <script>
         let map;
 

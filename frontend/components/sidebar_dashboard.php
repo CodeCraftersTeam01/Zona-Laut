@@ -76,6 +76,10 @@
                 <i class="fas fa-user-circle w-4 text-center text-gray-500"></i>
                 <span class="text-sm">Profil Saya</span>
             </a>
+            <a href="../../frontend/help" class="user-menu-item flex items-center gap-3 px-4 py-3 text-text-dark no-underline transition-all duration-200 hover:bg-bg-light border-b border-border">
+                <i class="fas fa-question-circle w-4 text-center text-gray-500"></i>
+                <span class="text-sm">Bantuan</span>
+            </a>
             <a href="#" class="user-menu-item flex items-center gap-3 px-4 py-3 text-red-600 no-underline transition-all duration-200 hover:bg-red-50 logout-btn" id="logoutBtn">
                 <i class="fas fa-sign-out-alt w-4 text-center"></i>
                 <span class="text-sm">Keluar</span>

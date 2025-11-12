@@ -386,7 +386,7 @@
                     myKapalData = [];
                 }
 
-                console.log('My Kapal Data loaded (aktif & terverifikasi):', myKapalData);
+                // console.log('My Kapal Data loaded (aktif & terverifikasi):', myKapalData);
                 return true;
             } else {
                 throw new Error(data.message || 'Failed to fetch my kapal data');
@@ -722,7 +722,7 @@
         }
 
         // Tampilkan jumlah kapal aktif di console untuk debugging
-        console.log(`Kapal aktif yang ditampilkan di peta: ${activeKapalData.length} dari total ${kapalData.length} kapal`);
+        // console.log(`Kapal aktif yang ditampilkan di peta: ${activeKapalData.length} dari total ${kapalData.length} kapal`);
     }
 
     // Move vessel within its DPI zone
