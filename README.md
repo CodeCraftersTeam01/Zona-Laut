@@ -96,5 +96,5 @@ Sistem ini dilengkapi dengan:
 - Memberikan data akurat untuk pengambilan kebijakan.
 
 ---
-
+Figma : https://www.figma.com/design/Q4gfmjRmfeRvvZrDp6jdLk/Untitled?node-id=0-1&t=ih6iRvsTYeKkcaLH-1
 > Dikembangkan untuk mendukung nelayan Indonesia dengan teknologi digital yang mudah digunakan dan berdampak nyata.
