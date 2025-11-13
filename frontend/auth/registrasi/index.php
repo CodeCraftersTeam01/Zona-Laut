@@ -249,7 +249,7 @@
                     
                     <button type="submit" class="register-button fade-in delay-4" id="submitButton" disabled>
                         <i class="fas fa-user-plus"></i>
-                        <span id="submitText">Daftar Sekarang</span>
+                        <span id="submitText" onclick="testing()">Daftar Sekarang</span>
                     </button>
                     
                     <div class="security-notice fade-in delay-4">
